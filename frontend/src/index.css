@@ -1,0 +1,73 @@
+/* Tailwind provides the utility and component layers used across the frontend. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fruit-chart-pop {
+  0% { transform: scale(1.16); }
+  68% { transform: scale(1.16); }
+  100% { transform: scale(1); }
+}
+
+.fruit-chart-pop {
+  animation: fruit-chart-pop 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes fruit-ring-complete {
+  from { stroke-dashoffset: var(--circle-length); }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fruit-ring-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fruit-segment-fill {
+  from { stroke-dasharray: 0 var(--circle-length); opacity: 0.35; }
+  to { stroke-dasharray: var(--segment-length) var(--remaining-length); opacity: 1; }
+}
+
+.fruit-ring-complete {
+  animation: fruit-ring-complete 1.9s ease-in-out both;
+}
+
+.fruit-ring-rotate {
+  animation: fruit-ring-rotate 2s linear infinite;
+}
+
+.fruit-sales-segment {
+  animation: fruit-segment-fill 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fruit-chart-pop,
+  .fruit-ring-complete,
+  .fruit-ring-rotate,
+  .fruit-sales-segment {
+    animation: none !important;
+  }
+}
+
+html, body, #root { height: 100%; }
+body {
+  /* Establishes the readable application background and default typography. */
+  @apply bg-gray-50 text-gray-800 antialiased;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { @apply bg-gray-300 rounded; }
+::-webkit-scrollbar-thumb:hover { @apply bg-gray-400; }
+
+@layer components {
+  
+  .btn { @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-300; }
+  .btn-secondary { @apply bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-300; }
+  .btn-danger { @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-300; }
+  .btn-ghost { @apply bg-transparent text-gray-600 hover:bg-gray-100; }
+  .input { @apply w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-500 bg-white; }
+  .label { @apply block text-sm font-medium text-gray-700 mb-1; }
+  .card { @apply bg-white rounded-xl shadow-card p-5 transition-shadow duration-200 hover:shadow-md; }
+  .badge { @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold; }
+}

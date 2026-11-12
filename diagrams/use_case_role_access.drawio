@@ -1,0 +1,97 @@
+<mxfile host="Electron" agent="ChatGPT">
+  <diagram id="use-case-access" name="Use Case Diagram">
+    <mxGraphModel dx="635" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#17365D;" value="USE CASE DIAGRAM — ROLE-BASED ACCESS" vertex="1">
+          <mxGeometry height="42" width="1260" x="70" y="18" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#526579;" value="System capabilities by role • Backend authorization independently enforces these permissions" vertex="1">
+          <mxGeometry height="28" width="1260" x="70" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="system" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#7F96AD;strokeWidth=2;fontColor=#17365D;fontStyle=1;fontSize=15;verticalAlign=top;spacingTop=14;arcSize=10;" value="FRUIT &amp; VENDOR ORDER MANAGEMENT SYSTEM" vertex="1">
+          <mxGeometry height="620" width="790" x="300" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#DDEBF7;strokeColor=#4472C4;fontColor=#17365D;fontStyle=1;fontSize=13;" value="Administrator" vertex="1">
+          <mxGeometry height="115" width="70" x="110" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="sales" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontStyle=1;fontSize=13;" value="Sales user" vertex="1">
+          <mxGeometry height="115" width="70" x="111" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="login" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#EAF2F8;strokeColor=#5B9BD5;strokeWidth=1.5;fontColor=#17365D;fontSize=13;" value="Log in" vertex="1">
+          <mxGeometry height="55" width="190" x="365" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dashboard" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#EAF2F8;strokeColor=#5B9BD5;strokeWidth=1.5;fontColor=#17365D;fontSize=13;" value="View dashboard" vertex="1">
+          <mxGeometry height="55" width="190" x="650" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="fruit" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#DDEBF7;strokeColor=#4472C4;strokeWidth=1.5;fontColor=#17365D;fontSize=13;" value="Manage fruits" vertex="1">
+          <mxGeometry height="55" width="190" x="365" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="box" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#DDEBF7;strokeColor=#4472C4;strokeWidth=1.5;fontColor=#17365D;fontSize=13;" value="Manage box sizes" vertex="1">
+          <mxGeometry height="55" width="190" x="650" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="supplier" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#DDEBF7;strokeColor=#4472C4;strokeWidth=1.5;fontColor=#17365D;fontSize=13;" value="Manage suppliers" vertex="1">
+          <mxGeometry height="55" width="190" x="365" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="stock" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#DDEBF7;strokeColor=#4472C4;strokeWidth=1.5;fontColor=#17365D;fontSize=13;" value="Manage stock" vertex="1">
+          <mxGeometry height="55" width="190" x="650" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="vendor" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#E2F0D9;strokeColor=#70AD47;strokeWidth=1.5;fontColor=#375623;fontSize=13;" value="Manage street vendors" vertex="1">
+          <mxGeometry height="55" width="190" x="365" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="orders" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#E2F0D9;strokeColor=#70AD47;strokeWidth=1.5;fontColor=#375623;fontSize=13;" value="Create and manage orders" vertex="1">
+          <mxGeometry height="55" width="220" x="650" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="reports" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#DDEBF7;strokeColor=#4472C4;strokeWidth=1.5;fontColor=#17365D;fontSize=13;" value="View reports" vertex="1">
+          <mxGeometry height="55" width="190" x="500" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_login" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_sales_login" edge="1" parent="1" source="sales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=1.5;endArrow=none;startArrow=none;" target="login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_dash" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_sales_dash" edge="1" parent="1" source="sales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=1.5;endArrow=none;startArrow=none;" target="dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_fruit" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="fruit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_box" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_supplier" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="supplier">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_stock" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="stock">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_vendor" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="vendor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_sales_vendor" edge="1" parent="1" source="sales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=1.5;endArrow=none;startArrow=none;" target="vendor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_orders" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="orders">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_sales_orders" edge="1" parent="1" source="sales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=1.5;endArrow=none;startArrow=none;" target="orders">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin_reports" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4472C4;strokeWidth=1.5;endArrow=none;startArrow=none;" target="reports">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_admin" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#4472C4;fontColor=#17365D;fontSize=11;arcSize=8;" value="Administrator permissions" vertex="1">
+          <mxGeometry height="35" width="220" x="300" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_sales" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=11;arcSize=8;" value="Sales user permissions" vertex="1">
+          <mxGeometry height="35" width="220" x="540" y="770" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

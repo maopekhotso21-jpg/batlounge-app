@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-10-12T09:00:00.000Z" agent="ChatGPT" version="25.0.3" type="device">
+  <diagram id="data-flow-diagram" name="Data Flow Diagram">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="DATA FLOW DIAGRAM" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#0F172A;fontSize=26;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="24" width="700" height="42" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="Role-based workflows • JWT-protected API • Order processing • Transactional inventory updates" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#475569;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="62" y="66" width="1100" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="users_boundary" value="ACTORS  |  Application users" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#94A3B8;strokeWidth=1.5;dashed=1;dashPattern=8 4;fontColor=#475569;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="55" y="135" width="260" height="300" as="geometry"/>
+        </mxCell>
+        <mxCell id="client_boundary" value="CLIENT TIER  |  User interface" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#94A3B8;strokeWidth=1.5;dashed=1;dashPattern=8 4;fontColor=#475569;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="355" y="135" width="300" height="300" as="geometry"/>
+        </mxCell>
+        <mxCell id="server_boundary" value="APPLICATION TIER  |  Request processing" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#94A3B8;strokeWidth=1.5;dashed=1;dashPattern=8 4;fontColor=#475569;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="695" y="135" width="480" height="300" as="geometry"/>
+        </mxCell>
+        <mxCell id="data_boundary" value="DATA TIER  |  Persistent records" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#94A3B8;strokeWidth=1.5;dashed=1;dashPattern=8 4;fontColor=#475569;fontSize=13;fontStyle=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="1215" y="135" width="320" height="300" as="geometry"/>
+        </mxCell>
+        <mxCell id="admin" value="ADMINISTRATOR&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;Login&lt;br&gt;User / system management&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=2;fontColor=#0F172A;fontSize=15;fontStyle=1;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="205" width="190" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="sales" value="SALES USER&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;Login&lt;br&gt;Vendor management&lt;br&gt;Order workflow&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=2;fontColor=#0F172A;fontSize=15;fontStyle=1;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="330" width="190" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="app" value="REACT APPLICATION&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;Tables • Forms • Charts&lt;br&gt;Order workflow • Notifications&lt;br&gt;Presentation and user feedback&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#1E3A8A;fontSize=15;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="245" width="210" height="125" as="geometry"/>
+        </mxCell>
+        <mxCell id="api" value="EXPRESS API&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;REST endpoints&lt;br&gt;JWT HTTP requests&lt;br&gt;JSON responses&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=2;fontColor=#064E3B;fontSize=15;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="735" y="245" width="180" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="sec" value="SECURITY MIDDLEWARE&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;Authenticate JWT&lt;br&gt;Authorize roles / permissions&lt;br&gt;Reject invalid access&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;fontColor=#78350F;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="965" y="180" width="180" height="115" as="geometry"/>
+        </mxCell>
+        <mxCell id="ctrl" value="CONTROLLERS&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;Validate inputs&lt;br&gt;Apply business rules&lt;br&gt;Coordinate reads / writes&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=2;fontColor=#7C2D12;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="965" y="325" width="180" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="data" value="MYSQL DATABASE&lt;br&gt;&lt;font style=&quot;font-size:12px;font-weight:normal&quot;&gt;Users • Vendors • Products&lt;br&gt;Orders • Order items • Stock&lt;/font&gt;" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=2;fontColor=#831843;fontSize=15;fontStyle=1;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1265" y="245" width="220" height="125" as="geometry"/>
+        </mxCell>
+        <mxCell id="admin_app" value="Login / management requests" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="admin" target="app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="sales_app" value="Login / vendors / orders" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="sales" target="app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="app_api" value="JWT-authenticated HTTP requests" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#1D4ED8;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="app" target="api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="api_sec" value="Authenticate / authorize" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#059669;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#065F46;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="api" target="sec">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="sec_ctrl" value="Authorized request" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#92400E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="sec" target="ctrl">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ctrl_data" value="Read / write queries" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#DB2777;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#9D174D;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ctrl" target="data">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="data_ctrl" value="Records / transaction result" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#DB2777;strokeWidth=2;dashed=1;dashPattern=6 4;endArrow=block;endFill=1;fontSize=12;fontColor=#9D174D;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="data" target="ctrl">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ctrl_api" value="JSON result / error" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;dashed=1;dashPattern=6 4;endArrow=block;endFill=1;fontSize=12;fontColor=#334155;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ctrl" target="api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="api_app" value="JSON response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;dashed=1;dashPattern=6 4;endArrow=block;endFill=1;fontSize=12;fontColor=#334155;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="api" target="app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="app_admin" value="Tables / forms / charts / notifications" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;dashed=1;dashPattern=6 4;endArrow=block;endFill=1;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="app" target="admin">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="app_sales" value="Tables / forms / order workflow" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;dashed=1;dashPattern=6 4;endArrow=block;endFill=1;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="app" target="sales">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_title" value="ORDER PROCESSING  |  Logical data flow" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#0F172A;fontSize=26;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="500" width="700" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_step1" value="&lt;b&gt;1. Load reference data&lt;/b&gt;&lt;br&gt;Read active vendors and products" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#4C1D95;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="565" width="250" height="82" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_step2" value="&lt;b&gt;2. Validate order&lt;/b&gt;&lt;br&gt;Check product availability and quantities" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#4C1D95;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="365" y="565" width="250" height="82" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_step3" value="&lt;b&gt;3. Calculate totals&lt;/b&gt;&lt;br&gt;Compute line amounts and order total" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#4C1D95;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="565" width="250" height="82" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_step4" value="&lt;b&gt;4. Persist order&lt;/b&gt;&lt;br&gt;Write order header and order items" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#4C1D95;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="955" y="565" width="250" height="82" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_step5" value="&lt;b&gt;5. Update stock&lt;/b&gt;&lt;br&gt;On completion, decrement product stock" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#4C1D95;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="565" width="280" height="82" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_flow_1" value="Validated inputs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;fontColor=#4C1D95;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="order_step1" target="order_step2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_flow_2" value="Valid quantities" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;fontColor=#4C1D95;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="order_step2" target="order_step3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_flow_3" value="Order + item values" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;fontColor=#4C1D95;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="order_step3" target="order_step4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="order_flow_4" value="Same transaction" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;endArrow=block;endFill=1;fontSize=11;fontColor=#4C1D95;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="order_step4" target="order_step5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="transaction_note" value="&lt;b&gt;Transaction / integrity rule&lt;/b&gt;&lt;br&gt;Perform order-header insertion, order-item insertion, and the completion-time stock update within one database transaction. Commit only if all required operations succeed; otherwise roll back. Use appropriate stock checks / locking to prevent overselling." style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1;fontColor=#334155;fontSize=13;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="70" y="700" width="900" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="security_note" value="&lt;b&gt;Trust and validation rule&lt;/b&gt;&lt;br&gt;Never trust client-supplied totals, role claims, product status, or stock quantities. Verify permissions and recalculate totals on the server." style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1;fontColor=#334155;fontSize=13;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="700" width="520" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="footer" value="FLOW KEY  •  Solid arrows: requests / commands  •  Dashed arrows: returned data / UI responses" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#475569;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="865" width="1300" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

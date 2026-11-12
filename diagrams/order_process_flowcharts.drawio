@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net" modified="2026-10-12T09:10:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram id="order-processes" name="Order Process Flowcharts">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="ORDER MANAGEMENT — PROCESS FLOWCHARTS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#17365D;" vertex="1" parent="1">
+          <mxGeometry x="80" y="20" width="1490" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="Creation validates stock and pricing before saving • Completion deducts stock before finalizing status" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#526579;" vertex="1" parent="1">
+          <mxGeometry x="80" y="62" width="1490" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- ORDER CREATION -->
+        <mxCell id="create_header" value="1. ORDER CREATION" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#17365D;strokeColor=#17365D;fontColor=#FFFFFF;fontStyle=1;fontSize=16;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="90" y="110" width="690" height="42" as="geometry"/>
+        </mxCell>
+        <mxCell id="ca" value="User opens&#xa;Create Order" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#5B9BD5;fontColor=#17365D;fontSize=13;arcSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="175" width="210" height="54" as="geometry"/></mxCell>
+        <mxCell id="cb" value="Select active vendor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#5B9BD5;fontColor=#17365D;fontSize=13;arcSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="255" width="210" height="54" as="geometry"/></mxCell>
+        <mxCell id="cc" value="Select product&#xa;and quantity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#5B9BD5;fontColor=#17365D;fontSize=13;arcSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="335" width="210" height="54" as="geometry"/></mxCell>
+        <mxCell id="cd" value="Quantity&#xa;positive?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#7F6000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="365" y="415" width="140" height="78" as="geometry"/></mxCell>
+        <mxCell id="ce" value="Show validation error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#C65911;fontColor=#843C0C;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="570" y="427" width="175" height="54" as="geometry"/></mxCell>
+        <mxCell id="cf" value="Read locked product&#xa;price and stock" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="525" width="210" height="58" as="geometry"/></mxCell>
+        <mxCell id="cg" value="Enough stock and&#xa;active product?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#7F6000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="365" y="610" width="140" height="82" as="geometry"/></mxCell>
+        <mxCell id="ch" value="Calculate subtotal&#xa;and total" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="725" width="210" height="56" as="geometry"/></mxCell>
+        <mxCell id="ci" value="Insert order&#xa;and order items" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="810" width="210" height="56" as="geometry"/></mxCell>
+        <mxCell id="cj" value="Commit transaction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="895" width="210" height="54" as="geometry"/></mxCell>
+        <mxCell id="ck" value="Show order as&#xa;Pending" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#4472C4;fontColor=#17365D;fontStyle=1;fontSize=13;arcSize=18;" vertex="1" parent="1"><mxGeometry x="330" y="978" width="210" height="58" as="geometry"/></mxCell>
+        <mxCell id="ce2" value="Show validation error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#C65911;fontColor=#843C0C;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="570" y="624" width="175" height="54" as="geometry"/></mxCell>
+
+        <!-- creation connectors -->
+        <mxCell id="e_ca_cb" edge="1" parent="1" source="ca" target="cb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cb_cc" edge="1" parent="1" source="cb" target="cc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cc_cd" edge="1" parent="1" source="cc" target="cd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cd_ce" value="No" edge="1" parent="1" source="cd" target="ce" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C65911;strokeWidth=2;fontStyle=1;fontColor=#C65911;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cd_cf" value="Yes" edge="1" parent="1" source="cd" target="cf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=2;fontStyle=1;fontColor=#548235;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cf_cg" edge="1" parent="1" source="cf" target="cg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cg_ce2" value="No" edge="1" parent="1" source="cg" target="ce2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C65911;strokeWidth=2;fontStyle=1;fontColor=#C65911;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cg_ch" value="Yes" edge="1" parent="1" source="cg" target="ch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=2;fontStyle=1;fontColor=#548235;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_ch_ci" edge="1" parent="1" source="ch" target="ci" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_ci_cj" edge="1" parent="1" source="ci" target="cj" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_cj_ck" edge="1" parent="1" source="cj" target="ck" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- ORDER COMPLETION -->
+        <mxCell id="complete_header" value="2. ORDER COMPLETION" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#17365D;strokeColor=#17365D;fontColor=#FFFFFF;fontStyle=1;fontSize=16;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="1"><mxGeometry x="875" y="110" width="690" height="42" as="geometry"/></mxCell>
+        <mxCell id="oa" value="Request status change&#xa;to Completed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#5B9BD5;fontColor=#17365D;fontSize=13;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1115" y="175" width="210" height="58" as="geometry"/></mxCell>
+        <mxCell id="ob" value="Lock order" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=13;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1115" y="260" width="210" height="54" as="geometry"/></mxCell>
+        <mxCell id="oc" value="Order exists and&#xa;is editable?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#7F6000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1150" y="340" width="140" height="82" as="geometry"/></mxCell>
+        <mxCell id="od" value="Return error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#C65911;fontColor=#843C0C;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1370" y="354" width="160" height="54" as="geometry"/></mxCell>
+        <mxCell id="oe" value="Lock each product" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=13;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1115" y="455" width="210" height="54" as="geometry"/></mxCell>
+        <mxCell id="of" value="Enough stock&#xa;for all items?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#7F6000;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1150" y="535" width="140" height="82" as="geometry"/></mxCell>
+        <mxCell id="og" value="Deduct stock" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#375623;fontSize=13;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1115" y="650" width="210" height="54" as="geometry"/></mxCell>
+        <mxCell id="oh" value="Update order status&#xa;to Completed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#4472C4;fontColor=#17365D;fontSize=13;fontStyle=1;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1115" y="735" width="210" height="58" as="geometry"/></mxCell>
+        <mxCell id="oi" value="Commit transaction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#4472C4;fontColor=#17365D;fontSize=13;fontStyle=1;arcSize=18;" vertex="1" parent="1"><mxGeometry x="1115" y="825" width="210" height="58" as="geometry"/></mxCell>
+        <mxCell id="oferr" value="Return error&#xa;(insufficient stock)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#C65911;fontColor=#843C0C;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1370" y="549" width="160" height="54" as="geometry"/></mxCell>
+        <mxCell id="endnote" value="Successful completion: stock deduction and status update are committed together." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F6F9;strokeColor=#A6B6C6;fontColor=#526579;fontSize=12;align=center;arcSize=8;" vertex="1" parent="1"><mxGeometry x="925" y="930" width="590" height="58" as="geometry"/></mxCell>
+
+        <!-- completion connectors -->
+        <mxCell id="e_oa_ob" edge="1" parent="1" source="oa" target="ob" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_ob_oc" edge="1" parent="1" source="ob" target="oc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_oc_od" value="No" edge="1" parent="1" source="oc" target="od" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C65911;strokeWidth=2;fontStyle=1;fontColor=#C65911;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_oc_oe" value="Yes" edge="1" parent="1" source="oc" target="oe" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=2;fontStyle=1;fontColor=#548235;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_oe_of" edge="1" parent="1" source="oe" target="of" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_of_oferr" value="No" edge="1" parent="1" source="of" target="oferr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C65911;strokeWidth=2;fontStyle=1;fontColor=#C65911;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_of_og" value="Yes" edge="1" parent="1" source="of" target="og" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#70AD47;strokeWidth=2;fontStyle=1;fontColor=#548235;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_og_oh" edge="1" parent="1" source="og" target="oh" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_oh_oi" edge="1" parent="1" source="oh" target="oi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#526579;strokeWidth=2;endArrow=block;endFill=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
