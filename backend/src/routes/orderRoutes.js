@@ -1,23 +1,28 @@
-// Creates the router for order endpoints.
-const router = require('express').Router();
-// Contains the database handlers for order operations.
-const c = require('../controllers/orderController');
-// Requires a valid JWT for every order route.
-const { authenticate } = require('../middleware/authMiddleware');
+const express = require('express');
+const router = express.Router();
+const {
+  getFruitQuantities,
+  createOrder,
+  getOrders,
+  getOrderById,
+  updateOrder,
+  updateOrderStatus,
+  deleteOrder
+} = require('../controllers/orderController');
 
-// Applies authentication to all routes declared below.
-router.use(authenticate);
+// Route to get fruit quantities (MUST be before /:id)
+router.get('/fruit-quantities', getFruitQuantities);
 
-router.get('/', c.getAll);
-<<<<<<< HEAD
-router.get('/fruit-quantities', c.fruitQuantities);
-=======
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
-router.get('/:id', c.getOne);
-router.post('/', c.create);
-router.put('/:id', c.update);
-router.patch('/:id/status', c.updateStatus);
-router.delete('/:id', c.remove);
+// Standard CRUD routes
+router.route('/')
+  .get(getOrders)
+  .post(createOrder);
 
-// Exports the router for mounting under /api/orders.
+router.route('/:id')
+  .get(getOrderById)
+  .put(updateOrder)
+  .delete(deleteOrder);
+
+router.patch('/:id/status', updateOrderStatus);
+
 module.exports = router;
