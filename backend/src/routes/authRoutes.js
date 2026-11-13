@@ -21,5 +21,11 @@ router.get('/me', authenticate, c.me);
 // Changes the password for the authenticated user.
 router.put('/change-password', authenticate, c.changePassword);
 
+// Get all users (Admin only)
+router.get('/users', authenticate, authorize('Admin'), c.getUsers);
+
+// Update a user's role (Admin only)
+router.put('/users/:id/role', authenticate, authorize('Admin'), c.updateUserRole);
+
 // Exports the router for mounting under /api/auth.
 module.exports = router;

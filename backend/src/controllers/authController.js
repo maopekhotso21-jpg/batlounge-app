@@ -42,9 +42,6 @@ exports.login = asyncHandler(async (req, res) => {
 });
 
 // PUBLIC: Creates a user after validating the username, password, and role.
-// NOTE: This route is meant for public self-registration. It ALWAYS forces the
-// role to "Sales" for security. Admins must be created via the protected
-// /register route (admin-only) below.
 exports.signup = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
   assert(isNonEmptyString(username), 'Username is required');
@@ -68,7 +65,6 @@ exports.signup = asyncHandler(async (req, res) => {
 });
 
 // ADMIN-ONLY: Creates a user (any role) after validating inputs.
-// This route is protected by authenticate + authorize('Admin').
 exports.register = asyncHandler(async (req, res) => {
   const { username, password, role } = req.body;
   assert(isNonEmptyString(username), 'Username is required');
@@ -112,4 +108,18 @@ exports.changePassword = asyncHandler(async (req, res) => {
   await db.query('UPDATE users SET password_hash=? WHERE user_id=?',
     [hash, req.user.user_id]);
   res.json({ message: 'Password updated' });
+});
+
+// NEW: Gets all users for the Admin UI
+exports.getUsers = asyncHandler(async (req, res) => {
+  const [rows] = await db.query('SELECT user_id, username, role FROM users');
+  res.json(rows);
+});
+
+// NEW: Updates a user's role (Admin only)
+exports.updateUserRole = asyncHandler(async (req, res) => {
+  const { role } = req.body;
+  assert(['Admin', 'Sales'].includes(role), 'Invalid role', 400);
+  await db.query('UPDATE users SET role=? WHERE user_id=?', [role, req.params.id]);
+  res.json({ message: 'User role updated successfully' });
 });
