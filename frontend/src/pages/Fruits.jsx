@@ -9,10 +9,7 @@ import SearchBar from '../components/ui/SearchBar.jsx';
 import { fruitsAPI } from '../services/endpoints.js';
 import { getError } from '../services/api.js';
 import { useToast } from '../context/ToastContext.jsx';
-<<<<<<< HEAD
-=======
 import { QRCodeSVG } from 'qrcode.react';
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 
 // Manages the administrator fruit catalogue with search, filtering, and CRUD forms.
 export default function Fruits() {
@@ -22,10 +19,7 @@ export default function Fruits() {
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
   const [modal, setModal] = useState({ open: false, editing: null });
-<<<<<<< HEAD
-=======
   const [qrFruit, setQrFruit] = useState(null);
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
   const [form, setForm] = useState({ fruit_name: '', status: 'Active' });
   const [saving, setSaving] = useState(false);
 
@@ -81,10 +75,7 @@ export default function Fruits() {
       key: 'actions', label: 'Actions', className: 'text-right',
       render: (r) => (
         <div className="flex justify-end gap-2">
-<<<<<<< HEAD
-=======
           <Button variant="secondary" onClick={() => setQrFruit(r)}>QR Code</Button>
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
           <Button variant="secondary" onClick={() => openEdit(r)}>Edit</Button>
           <Button variant="danger" onClick={() => remove(r)}>Delete</Button>
         </div>
@@ -115,8 +106,6 @@ export default function Fruits() {
       <Table columns={columns} rows={rows} loading={loading} emptyMessage="No fruits found" />
 
       <Modal
-<<<<<<< HEAD
-=======
         open={Boolean(qrFruit)}
         onClose={() => setQrFruit(null)}
         title={qrFruit ? `${qrFruit.fruit_name} QR Code` : 'Fruit QR Code'}
@@ -142,7 +131,6 @@ export default function Fruits() {
       </Modal>
 
       <Modal
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
         open={modal.open}
         onClose={() => setModal({ open: false, editing: null })}
         title={modal.editing ? 'Edit Fruit' : 'Add Fruit'}

@@ -1,20 +1,16 @@
 // Provides dashboard state and lifecycle behavior.
 import { useEffect, useState } from 'react';
 
-<<<<<<< HEAD
 import { Boxes, Leaf } from 'lucide-react';
-=======
 import { Apple, Boxes, CheckCircle2, ClipboardList, Clock3, DollarSign, Leaf, Store, Truck } from 'lucide-react';
 import StatCard from '../components/dashboard/StatCard.jsx';
 import BarChart from '../components/dashboard/BarChart.jsx';
 import DonutChart from '../components/dashboard/DonutChart.jsx';
 import Card from '../components/ui/Card.jsx';
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 import Loader from '../components/ui/Loader.jsx';
 import { fruitsAPI, ordersAPI, reportsAPI, stockAPI, vendorsAPI } from '../services/endpoints.js';
 import { getError } from '../services/api.js';
 import { useToast } from '../context/ToastContext.jsx';
-<<<<<<< HEAD
 
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -36,32 +32,26 @@ const FRUIT_EMOJIS = {
 
 const normalizeFruitName = (name) => name.toLowerCase().trim();
 
-=======
 import { currency, dateShort } from '../utils/format.js';
 
 import { useAuth } from '../context/AuthContext.jsx';
 
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 
 export default function Dashboard() {
   const { isAdmin, user } = useAuth();
   const toast = useToast();
   const [stats, setStats] = useState(null);
-<<<<<<< HEAD
   const [fruits, setFruits] = useState([]);
   const [fruitQuantities, setFruitQuantities] = useState({});
-=======
   const [salesBox, setSalesBox] = useState([]);
   const [salesDate, setSalesDate] = useState([]);
   const [topFruits, setTopFruits] = useState([]);
   const [pending, setPending] = useState([]);
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
-<<<<<<< HEAD
         const [fruitResponse, quantityResponse] = await Promise.all([
           fruitsAPI.list({ status: 'Active' }),
           ordersAPI.fruitQuantities()
@@ -77,7 +67,6 @@ export default function Dashboard() {
         } else {
           
           const [vendors, stock, orders] = await Promise.all([
-=======
         if (isAdmin) {
           const [a, b, c, d, e] = await Promise.all([
             reportsAPI.dashboard(), reportsAPI.salesByBoxSize(),
@@ -93,7 +82,6 @@ export default function Dashboard() {
           
           const [fruits, vendors, stock, orders] = await Promise.all([
             fruitsAPI.list({ status: 'Active' }),
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
             vendorsAPI.list({ status: 'Active' }),
             stockAPI.list(),
             ordersAPI.list()
@@ -101,11 +89,8 @@ export default function Dashboard() {
           const orderRows = orders.data;
           const completed = orderRows.filter((order) => order.status === 'Completed');
           setStats({
-<<<<<<< HEAD
             totalFruits: fruitResponse.data.length,
-=======
             totalFruits: fruits.data.length,
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
             totalSuppliers: 'Admin only',
             totalVendors: vendors.data.length,
             availableStock: stock.data.reduce((sum, product) => sum + Number(product.available_stock || 0), 0),
@@ -114,10 +99,7 @@ export default function Dashboard() {
             completedOrders: completed.length,
             salesValue: completed.reduce((sum, order) => sum + Number(order.total_amount || 0), 0)
           });
-<<<<<<< HEAD
-=======
           setPending(orderRows.filter((order) => !['Completed', 'Cancelled'].includes(order.status)).slice(0, 5));
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
         }
       } catch (err) {
         toast.error(getError(err));
@@ -128,12 +110,9 @@ export default function Dashboard() {
   if (loading || !stats) return <Loader label="Loading dashboard…" />;
 
   
-<<<<<<< HEAD
-=======
   const stagger = (i) => ({ animationDelay: `${i * 0.06}s` });
 
   
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
 
@@ -171,7 +150,6 @@ export default function Dashboard() {
         </div>
       </section>
 
-<<<<<<< HEAD
       <section aria-labelledby="fruit-showcase-heading" className="space-y-4">
         <div className="flex flex-col gap-1 border-b border-gray-200 pb-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -218,7 +196,6 @@ export default function Dashboard() {
         )}
       </section>
 
-=======
       <section className="space-y-4" aria-labelledby="overview-heading">
         <div className="flex flex-col gap-1 border-b border-gray-200 pb-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -312,7 +289,6 @@ export default function Dashboard() {
           )}
         </Card>
       </section>
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
     </div>
   );
 }

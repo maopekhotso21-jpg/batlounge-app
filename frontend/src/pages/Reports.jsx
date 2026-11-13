@@ -3,16 +3,12 @@ import { ArrowDownRight, ArrowUpRight, DollarSign, PackageCheck, ShoppingCart, T
 import Card from '../components/ui/Card.jsx';
 import Loader from '../components/ui/Loader.jsx';
 import BarChart from '../components/dashboard/BarChart.jsx';
-<<<<<<< HEAD
-=======
 import DonutChart from '../components/dashboard/DonutChart.jsx';
 import Badge from '../components/ui/Badge.jsx';
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 import { reportsAPI } from '../services/endpoints.js';
 import { getError } from '../services/api.js';
 import { useToast } from '../context/ToastContext.jsx';
 import { currency, dateShort } from '../utils/format.js';
-<<<<<<< HEAD
 
 const aggregateSalesByPeriod = (rows, period) => {
   const totals = new Map();
@@ -58,19 +54,15 @@ const aggregateSalesByPeriod = (rows, period) => {
     return { label, value: totals.get(key) || 0 };
   });
 };
-=======
 import { STATUS_COLORS } from '../utils/constants.js';
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 
 // Loads and presents administrator-only sales, purchase, and order reports.
 export default function Reports() {
   const toast = useToast();
   const [loading, setLoading] = useState(true);
-<<<<<<< HEAD
   const [pending, setPending] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [salesDate, setSalesDate] = useState([]);
-=======
   const [salesBox, setSalesBox] = useState([]);
   const [salesVendor, setSalesVendor] = useState([]);
   const [purchasesProv, setPurchasesProv] = useState([]);
@@ -78,12 +70,10 @@ export default function Reports() {
   const [completed, setCompleted] = useState([]);
   const [salesDate, setSalesDate] = useState([]);
   const [topFruits, setTopFruits] = useState([]);
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 
   useEffect(() => {
     (async () => {
       try {
-<<<<<<< HEAD
         const [pendingOrders, completedOrders, dailySales] = await Promise.all([
           reportsAPI.pendingOrders(),
           reportsAPI.completedOrders(),
@@ -92,7 +82,6 @@ export default function Reports() {
         setPending(pendingOrders.data);
         setCompleted(completedOrders.data);
         setSalesDate(dailySales.data);
-=======
         const [a, b, c, d, e, f, g] = await Promise.all([
           reportsAPI.salesByBoxSize(),
           reportsAPI.salesByVendor(),
@@ -109,7 +98,6 @@ export default function Reports() {
         setCompleted(e.data);
         setSalesDate(f.data);
         setTopFruits(g.data);
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
       } catch (err) { toast.error(getError(err)); }
       finally { setLoading(false); }
     })();
@@ -120,17 +108,14 @@ export default function Reports() {
   const totalRevenue = salesDate.reduce((sum, row) => sum + Number(row.value || 0), 0);
   const avgOrderValue = completed.length ? totalRevenue / completed.length : 0;
   const totalOrders = pending.length + completed.length;
-<<<<<<< HEAD
   const latestDate = salesDate[salesDate.length - 1];
   const weeklySales = aggregateSalesByPeriod(salesDate, 'weekly');
   const monthlySalesChart = aggregateSalesByPeriod(salesDate, 'monthly');
   const annualSales = aggregateSalesByPeriod(salesDate, 'annually');
-=======
   const completionRate = totalOrders ? (completed.length / totalOrders) * 100 : 0;
   const topFruit = topFruits[0];
   const topVendor = salesVendor[0];
   const latestDate = salesDate[salesDate.length - 1];
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
   const monthlySales = salesDate.reduce((months, row) => {
     const dateKey = String(row.label || row.date || '').slice(0, 10);
     const monthKey = dateKey.slice(0, 7);
@@ -154,8 +139,6 @@ export default function Reports() {
     : null;
   const monthLabel = (date) => date?.toLocaleDateString('en', { month: 'long', year: 'numeric' }) || 'No sales data';
 
-<<<<<<< HEAD
-=======
   const insights = [
     { label: 'Best seller', value: topFruit ? `${topFruit.label} (${topFruit.value} boxes)` : 'No sales yet', tone: 'emerald' },
     { label: 'Top vendor', value: topVendor ? `${topVendor.label} (${currency(topVendor.value)})` : 'No vendor data yet', tone: 'blue' },
@@ -163,7 +146,6 @@ export default function Reports() {
     { label: 'Open workload', value: `${pending.length} pending orders`, tone: 'amber' }
   ];
 
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
   return (
     <div className="space-y-6">
       <div>
@@ -240,7 +222,6 @@ export default function Reports() {
         </div>
       </Card>
 
-<<<<<<< HEAD
       <section aria-label={`Total completed sales ${currency(totalRevenue)}`} className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-slate-200 bg-white px-5 py-7 shadow-sm">
         <div className="sales-ring h-48 w-48 rounded-full">
           <div className="absolute inset-[10px] z-10 rounded-full bg-white shadow-inner" aria-hidden="true" />
@@ -271,7 +252,6 @@ export default function Reports() {
         </div>
       </section>
 
-=======
       <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
         {insights.map((item) => (
           <div key={item.label} className={`rounded-2xl border p-4 shadow-sm ${
@@ -366,7 +346,6 @@ export default function Reports() {
           </table>
         </div>
       </Card>
->>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
     </div>
   );
 }
