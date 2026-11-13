@@ -1,7 +1,5 @@
 // Provides dashboard state and lifecycle behavior.
 import { useEffect, useState } from 'react';
-
-import { Boxes, Leaf } from 'lucide-react';
 import { Apple, Boxes, CheckCircle2, ClipboardList, Clock3, DollarSign, Leaf, Store, Truck } from 'lucide-react';
 import StatCard from '../components/dashboard/StatCard.jsx';
 import BarChart from '../components/dashboard/BarChart.jsx';
@@ -11,8 +9,8 @@ import Loader from '../components/ui/Loader.jsx';
 import { fruitsAPI, ordersAPI, reportsAPI, stockAPI, vendorsAPI } from '../services/endpoints.js';
 import { getError } from '../services/api.js';
 import { useToast } from '../context/ToastContext.jsx';
-
 import { useAuth } from '../context/AuthContext.jsx';
+import { currency, dateShort } from '../utils/format.js';
 
 const FRUIT_IMAGES = {
   apples: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=700&q=85',
@@ -31,11 +29,6 @@ const FRUIT_EMOJIS = {
 };
 
 const normalizeFruitName = (name) => name.toLowerCase().trim();
-
-import { currency, dateShort } from '../utils/format.js';
-
-import { useAuth } from '../context/AuthContext.jsx';
-
 
 export default function Dashboard() {
   const { isAdmin, user } = useAuth();
@@ -62,12 +55,6 @@ export default function Dashboard() {
         ));
 
         if (isAdmin) {
-          const dashboard = await reportsAPI.dashboard();
-          setStats(dashboard.data);
-        } else {
-          
-          const [vendors, stock, orders] = await Promise.all([
-        if (isAdmin) {
           const [a, b, c, d, e] = await Promise.all([
             reportsAPI.dashboard(), reportsAPI.salesByBoxSize(),
             reportsAPI.totalSalesByDate(), reportsAPI.topSellingFruits(),
@@ -79,9 +66,7 @@ export default function Dashboard() {
           setTopFruits(d.data);
           setPending(e.data.slice(0, 5));
         } else {
-          
-          const [fruits, vendors, stock, orders] = await Promise.all([
-            fruitsAPI.list({ status: 'Active' }),
+          const [vendors, stock, orders] = await Promise.all([
             vendorsAPI.list({ status: 'Active' }),
             stockAPI.list(),
             ordersAPI.list()
@@ -90,7 +75,6 @@ export default function Dashboard() {
           const completed = orderRows.filter((order) => order.status === 'Completed');
           setStats({
             totalFruits: fruitResponse.data.length,
-            totalFruits: fruits.data.length,
             totalSuppliers: 'Admin only',
             totalVendors: vendors.data.length,
             availableStock: stock.data.reduce((sum, product) => sum + Number(product.available_stock || 0), 0),
@@ -105,14 +89,11 @@ export default function Dashboard() {
         toast.error(getError(err));
       } finally { setLoading(false); }
     })();
-  }, [isAdmin]);
+  }, [isAdmin, toast]);
 
   if (loading || !stats) return <Loader label="Loading dashboard…" />;
 
-  
   const stagger = (i) => ({ animationDelay: `${i * 0.06}s` });
-
-  
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
 
