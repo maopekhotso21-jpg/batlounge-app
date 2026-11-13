@@ -39,6 +39,7 @@
   animation: fruit-segment-fill 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+<<<<<<< HEAD
 .sales-ring {
   position: relative;
   display: grid;
@@ -56,12 +57,18 @@
   animation: fruit-ring-rotate 18s linear infinite;
 }
 
+=======
+>>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 @media (prefers-reduced-motion: reduce) {
   .fruit-chart-pop,
   .fruit-ring-complete,
   .fruit-ring-rotate,
+<<<<<<< HEAD
   .fruit-sales-segment,
   .sales-ring::before {
+=======
+  .fruit-sales-segment {
+>>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
     animation: none !important;
   }
 }

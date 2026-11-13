@@ -9,7 +9,10 @@ const { authenticate } = require('../middleware/authMiddleware');
 router.use(authenticate);
 
 router.get('/', c.getAll);
+<<<<<<< HEAD
 router.get('/fruit-quantities', c.fruitQuantities);
+=======
+>>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 router.get('/:id', c.getOne);
 router.post('/', c.create);
 router.put('/:id', c.update);

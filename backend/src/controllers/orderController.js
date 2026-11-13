@@ -30,6 +30,7 @@ exports.getAll = asyncHandler(async (req, res) => {
   res.json(rows);
 });
 
+<<<<<<< HEAD
 // Summarizes ordered box quantities by fruit, excluding cancelled orders.
 exports.fruitQuantities = asyncHandler(async (req, res) => {
   const [rows] = await db.query(`
@@ -46,6 +47,8 @@ exports.fruitQuantities = asyncHandler(async (req, res) => {
   res.json(rows);
 });
 
+=======
+>>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 // Retrieves one order, its vendor details, and all of its line items.
 exports.getOne = asyncHandler(async (req, res) => {
   const [orders] = await db.query(`

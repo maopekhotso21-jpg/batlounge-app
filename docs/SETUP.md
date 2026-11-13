@@ -76,6 +76,7 @@ npm run build
 
 The user seed script is `backend/scripts/seedUsers.js`. Run it after the database is available according to the credentials configured in that script.
 
+<<<<<<< HEAD
 ## Deploy on Render
 
 The repository includes a `render.yaml` Blueprint for the Node API and Vite static site. Render does not provide a managed MySQL service, so provision a reachable MySQL 8 or compatible TiDB database separately. Keep the database credentials and JWT secret in Render environment variables; never commit them.
@@ -89,6 +90,8 @@ The repository includes a `render.yaml` Blueprint for the Node API and Vite stat
 
 The Blueprint rewrites frontend routes to `index.html` for React Router and configures `/api/health` as the API health check. Free Render web services may sleep when idle and take time to wake up.
 
+=======
+>>>>>>> 9eb0d96ef5a0b1fe3d8fd7867d536603b82fa08d
 ## Troubleshooting
 
 - Database connection failure: confirm MySQL is running and `.env` values match the server.
