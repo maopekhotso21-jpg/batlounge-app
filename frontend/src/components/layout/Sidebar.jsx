@@ -1,7 +1,7 @@
 // Supplies consistent vector icons for the navigation menu.
 import {
   Apple, BarChart3, Boxes, ClipboardList, LayoutDashboard,
-  Package, Store, Truck
+  Package, Store, Truck, Users
 } from 'lucide-react';
 // Provides the current route and authenticated user role.
 import { NavLink } from 'react-router-dom';
@@ -16,7 +16,8 @@ const NAV = [
   { to: '/stock', label: 'Stock', icon: Package, roles: ['Admin'] },
   { to: '/vendors', label: 'Street Vendors', icon: Store, roles: ['Admin', 'Sales'] },
   { to: '/orders', label: 'Orders', icon: ClipboardList, roles: ['Admin', 'Sales'] },
-  { to: '/reports', label: 'Reports', icon: BarChart3, roles: ['Admin'] }
+  { to: '/reports', label: 'Reports', icon: BarChart3, roles: ['Admin'] },
+  { to: '/users', label: 'Users', icon: Users, roles: ['Admin'] }
 ];
 
 // Renders responsive navigation filtered by the authenticated user's role.

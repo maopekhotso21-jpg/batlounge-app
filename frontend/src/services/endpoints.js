@@ -74,3 +74,9 @@ export const reportsAPI = {
   totalSalesByDate: () => api.get('/reports/total-sales-by-date'),
   topSellingFruits: () => api.get('/reports/top-selling-fruits')
 };
+
+// Groups user management API calls (Admin only).
+export const usersAPI = {
+  list: () => api.get('/auth/users'),
+  updateRole: (id, role) => api.put(`/auth/users/${id}/role`, { role })
+};

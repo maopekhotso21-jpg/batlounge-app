@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute.jsx';
@@ -17,7 +16,7 @@ import CreateOrder from '../pages/CreateOrder.jsx';
 import Reports from '../pages/Reports.jsx';
 import Unauthorized from '../pages/Unauthorized.jsx';
 import NotFound from '../pages/NotFound.jsx';
-
+import Users from '../pages/Users.jsx'; // <-- Added Users import
 
 export default function AppRoutes() {
   return (
@@ -39,6 +38,10 @@ export default function AppRoutes() {
         <Route path="orders/new" element={<CreateOrder />} />
         <Route path="orders/:id" element={<OrderDetails />} />
         <Route path="reports" element={<ProtectedRoute roles={['Admin']}><Reports /></ProtectedRoute>} />
+        
+        {/* Added Users Route - Admin Only */}
+        <Route path="users" element={<ProtectedRoute roles={['Admin']}><Users /></ProtectedRoute>} />
+        
         <Route path="unauthorized" element={<Unauthorized />} />
       </Route>
       <Route path="*" element={<NotFound />} />
