@@ -9,6 +9,7 @@ import { reportsAPI } from '../services/endpoints.js';
 import { getError } from '../services/api.js';
 import { useToast } from '../context/ToastContext.jsx';
 import { currency, dateShort } from '../utils/format.js';
+import { STATUS_COLORS } from '../utils/constants.js';
 
 const aggregateSalesByPeriod = (rows, period) => {
   const totals = new Map();
@@ -54,7 +55,6 @@ const aggregateSalesByPeriod = (rows, period) => {
     return { label, value: totals.get(key) || 0 };
   });
 };
-import { STATUS_COLORS } from '../utils/constants.js';
 
 // Loads and presents administrator-only sales, purchase, and order reports.
 export default function Reports() {
@@ -66,22 +66,11 @@ export default function Reports() {
   const [salesBox, setSalesBox] = useState([]);
   const [salesVendor, setSalesVendor] = useState([]);
   const [purchasesProv, setPurchasesProv] = useState([]);
-  const [pending, setPending] = useState([]);
-  const [completed, setCompleted] = useState([]);
-  const [salesDate, setSalesDate] = useState([]);
   const [topFruits, setTopFruits] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
-        const [pendingOrders, completedOrders, dailySales] = await Promise.all([
-          reportsAPI.pendingOrders(),
-          reportsAPI.completedOrders(),
-          reportsAPI.totalSalesByDate()
-        ]);
-        setPending(pendingOrders.data);
-        setCompleted(completedOrders.data);
-        setSalesDate(dailySales.data);
         const [a, b, c, d, e, f, g] = await Promise.all([
           reportsAPI.salesByBoxSize(),
           reportsAPI.salesByVendor(),
@@ -115,7 +104,7 @@ export default function Reports() {
   const completionRate = totalOrders ? (completed.length / totalOrders) * 100 : 0;
   const topFruit = topFruits[0];
   const topVendor = salesVendor[0];
-  const latestDate = salesDate[salesDate.length - 1];
+  
   const monthlySales = salesDate.reduce((months, row) => {
     const dateKey = String(row.label || row.date || '').slice(0, 10);
     const monthKey = dateKey.slice(0, 7);
@@ -126,6 +115,7 @@ export default function Reports() {
     months.set(monthKey, month);
     return months;
   }, new Map());
+  
   const latestMonthKey = [...monthlySales.keys()].sort().at(-1);
   const latestMonthDate = latestMonthKey ? new Date(`${latestMonthKey}-01T00:00:00`) : null;
   const previousMonthDate = latestMonthDate ? new Date(latestMonthDate.getFullYear(), latestMonthDate.getMonth() - 1, 1) : null;
