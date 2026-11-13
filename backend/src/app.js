@@ -20,8 +20,11 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 // The app is exported separately so server startup and tests can reuse it.
 const app = express();
 
-// Enables cross-origin requests from the frontend.
-app.use(cors());
+// Restricts deployed cross-origin requests to the configured frontend URL.
+const allowedOrigins = process.env.FRONTEND_URL
+  ? process.env.FRONTEND_URL.split(',').map((origin) => origin.trim()).filter(Boolean)
+  : true;
+app.use(cors({ origin: allowedOrigins }));
 // Parses JSON request bodies and limits them to one megabyte.
 app.use(express.json({ limit: '1mb' }));
 // Parses URL-encoded form bodies, including nested values.

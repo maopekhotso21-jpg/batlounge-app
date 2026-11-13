@@ -39,11 +39,29 @@
   animation: fruit-segment-fill 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+.sales-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.sales-ring::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(#ef4444, #f97316, #eab308, #22c55e, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #ef4444);
+  content: '';
+  animation: fruit-ring-rotate 18s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fruit-chart-pop,
   .fruit-ring-complete,
   .fruit-ring-rotate,
-  .fruit-sales-segment {
+  .fruit-sales-segment,
+  .sales-ring::before {
     animation: none !important;
   }
 }

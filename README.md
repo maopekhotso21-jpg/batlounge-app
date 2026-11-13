@@ -126,3 +126,7 @@ Get-ChildItem .\backend\src -Recurse -Filter *.js | ForEach-Object { node --chec
 ```
 
 See [docs/SETUP.md](docs/SETUP.md), [docs/API.md](docs/API.md), and [docs/TECHNICAL_DOCUMENTATION.md](docs/TECHNICAL_DOCUMENTATION.md).
+
+## Deploy on Render
+
+The repository includes a Render Blueprint (`render.yaml`) for the backend API and frontend static site. Configure an externally hosted MySQL-compatible database and follow the production setup and database safety notes in [docs/SETUP.md](docs/SETUP.md#deploy-on-render).

@@ -30,6 +30,22 @@ exports.getAll = asyncHandler(async (req, res) => {
   res.json(rows);
 });
 
+// Summarizes ordered box quantities by fruit, excluding cancelled orders.
+exports.fruitQuantities = asyncHandler(async (req, res) => {
+  const [rows] = await db.query(`
+        SELECT f.fruit_id, f.fruit_name,
+          COALESCE(SUM(CASE WHEN o.order_id IS NOT NULL THEN oi.quantity_boxes ELSE 0 END), 0) AS boxes_ordered
+    FROM fruits f
+    LEFT JOIN products p ON p.fruit_id = f.fruit_id
+    LEFT JOIN order_items oi ON oi.product_id = p.product_id
+    LEFT JOIN orders o ON o.order_id = oi.order_id AND o.status <> 'Cancelled'
+    WHERE f.status = 'Active'
+    GROUP BY f.fruit_id, f.fruit_name
+    ORDER BY f.fruit_name ASC
+  `);
+  res.json(rows);
+});
+
 // Retrieves one order, its vendor details, and all of its line items.
 exports.getOne = asyncHandler(async (req, res) => {
   const [orders] = await db.query(`

@@ -3,45 +3,75 @@ import { ArrowDownRight, ArrowUpRight, DollarSign, PackageCheck, ShoppingCart, T
 import Card from '../components/ui/Card.jsx';
 import Loader from '../components/ui/Loader.jsx';
 import BarChart from '../components/dashboard/BarChart.jsx';
-import DonutChart from '../components/dashboard/DonutChart.jsx';
-import Badge from '../components/ui/Badge.jsx';
 import { reportsAPI } from '../services/endpoints.js';
 import { getError } from '../services/api.js';
 import { useToast } from '../context/ToastContext.jsx';
 import { currency, dateShort } from '../utils/format.js';
-import { STATUS_COLORS } from '../utils/constants.js';
+
+const aggregateSalesByPeriod = (rows, period) => {
+  const totals = new Map();
+  rows.forEach((row) => {
+    const dateKey = String(row.label || row.date || '').slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) return;
+    const date = new Date(`${dateKey}T00:00:00Z`);
+    if (Number.isNaN(date.getTime())) return;
+
+    const periodDate = period === 'weekly'
+      ? new Date(date.getTime() - ((date.getUTCDay() + 6) % 7) * 86400000)
+      : period === 'monthly'
+        ? new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1))
+        : new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    const key = periodDate.toISOString().slice(0, 10);
+    totals.set(key, (totals.get(key) || 0) + Number(row.value || 0));
+  });
+
+  const keys = [...totals.keys()].sort();
+  if (!keys.length) return [];
+
+  const count = period === 'annually' ? 5 : 12;
+  const latest = new Date(`${keys[keys.length - 1]}T00:00:00Z`);
+  return Array.from({ length: count }, (_, index) => {
+    const offset = count - index - 1;
+    const date = new Date(latest);
+    if (period === 'weekly') date.setUTCDate(date.getUTCDate() - offset * 7);
+    if (period === 'monthly') date.setUTCMonth(date.getUTCMonth() - offset);
+    if (period === 'annually') date.setUTCFullYear(date.getUTCFullYear() - offset);
+
+    const periodDate = period === 'monthly'
+      ? new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1))
+      : period === 'annually'
+        ? new Date(Date.UTC(date.getUTCFullYear(), 0, 1))
+        : date;
+    const key = periodDate.toISOString().slice(0, 10);
+    const label = period === 'weekly'
+      ? `Week of ${periodDate.toLocaleDateString('en', { month: 'short', day: 'numeric', timeZone: 'UTC' })}`
+      : period === 'monthly'
+        ? periodDate.toLocaleDateString('en', { month: 'short', year: '2-digit', timeZone: 'UTC' })
+        : String(periodDate.getUTCFullYear());
+
+    return { label, value: totals.get(key) || 0 };
+  });
+};
 
 // Loads and presents administrator-only sales, purchase, and order reports.
 export default function Reports() {
   const toast = useToast();
   const [loading, setLoading] = useState(true);
-  const [salesBox, setSalesBox] = useState([]);
-  const [salesVendor, setSalesVendor] = useState([]);
-  const [purchasesProv, setPurchasesProv] = useState([]);
   const [pending, setPending] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [salesDate, setSalesDate] = useState([]);
-  const [topFruits, setTopFruits] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
-        const [a, b, c, d, e, f, g] = await Promise.all([
-          reportsAPI.salesByBoxSize(),
-          reportsAPI.salesByVendor(),
-          reportsAPI.purchasesByProvince(),
+        const [pendingOrders, completedOrders, dailySales] = await Promise.all([
           reportsAPI.pendingOrders(),
           reportsAPI.completedOrders(),
-          reportsAPI.totalSalesByDate(),
-          reportsAPI.topSellingFruits()
+          reportsAPI.totalSalesByDate()
         ]);
-        setSalesBox(a.data);
-        setSalesVendor(b.data);
-        setPurchasesProv(c.data);
-        setPending(d.data);
-        setCompleted(e.data);
-        setSalesDate(f.data);
-        setTopFruits(g.data);
+        setPending(pendingOrders.data);
+        setCompleted(completedOrders.data);
+        setSalesDate(dailySales.data);
       } catch (err) { toast.error(getError(err)); }
       finally { setLoading(false); }
     })();
@@ -52,10 +82,10 @@ export default function Reports() {
   const totalRevenue = salesDate.reduce((sum, row) => sum + Number(row.value || 0), 0);
   const avgOrderValue = completed.length ? totalRevenue / completed.length : 0;
   const totalOrders = pending.length + completed.length;
-  const completionRate = totalOrders ? (completed.length / totalOrders) * 100 : 0;
-  const topFruit = topFruits[0];
-  const topVendor = salesVendor[0];
   const latestDate = salesDate[salesDate.length - 1];
+  const weeklySales = aggregateSalesByPeriod(salesDate, 'weekly');
+  const monthlySalesChart = aggregateSalesByPeriod(salesDate, 'monthly');
+  const annualSales = aggregateSalesByPeriod(salesDate, 'annually');
   const monthlySales = salesDate.reduce((months, row) => {
     const dateKey = String(row.label || row.date || '').slice(0, 10);
     const monthKey = dateKey.slice(0, 7);
@@ -78,13 +108,6 @@ export default function Reports() {
     ? ((latestMonth.revenue - previousMonth.revenue) / previousMonth.revenue) * 100
     : null;
   const monthLabel = (date) => date?.toLocaleDateString('en', { month: 'long', year: 'numeric' }) || 'No sales data';
-
-  const insights = [
-    { label: 'Best seller', value: topFruit ? `${topFruit.label} (${topFruit.value} boxes)` : 'No sales yet', tone: 'emerald' },
-    { label: 'Top vendor', value: topVendor ? `${topVendor.label} (${currency(topVendor.value)})` : 'No vendor data yet', tone: 'blue' },
-    { label: 'Completed rate', value: `${Math.round(completionRate)}%`, tone: 'purple' },
-    { label: 'Open workload', value: `${pending.length} pending orders`, tone: 'amber' }
-  ];
 
   return (
     <div className="space-y-6">
@@ -162,100 +185,36 @@ export default function Reports() {
         </div>
       </Card>
 
-      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
-        {insights.map((item) => (
-          <div key={item.label} className={`rounded-2xl border p-4 shadow-sm ${
-            item.tone === 'emerald' ? 'border-emerald-200 bg-emerald-50' :
-            item.tone === 'blue' ? 'border-blue-200 bg-blue-50' :
-            item.tone === 'purple' ? 'border-violet-200 bg-violet-50' :
-            'border-amber-200 bg-amber-50'
-          }`}>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">{item.label}</p>
-            <p className="mt-2 text-sm font-semibold text-slate-800">{item.value}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid lg:grid-cols-2 gap-6">
-        <Card title="Sales by Box Size (completed)"><BarChart data={salesBox} formatter={currency} /></Card>
-        <Card title="Top Selling Fruits (boxes)"><DonutChart data={topFruits} centerLabel="Boxes sold" showPercentages /></Card>
-        <Card title="Sales by Street Vendor (completed)">
-          <BarChart data={salesVendor} formatter={currency} />
-        </Card>
-        <Card title="Purchases by South African Province"><BarChart data={purchasesProv} /></Card>
-        <Card title="Total Sales by Date (completed)">
-          <BarChart data={salesDate.slice(-14)} formatter={currency} />
-        </Card>
-        <Card title="Order Status Overview">
-          <DonutChart data={[
-            { label: 'Pending', value: pending.length },
-            { label: 'Completed', value: completed.length }
-          ]} />
-        </Card>
-      </div>
-
-      <Card title="Operational highlights">
-        <div className="grid md:grid-cols-3 gap-4 text-sm">
-          <div className="rounded-2xl bg-slate-50 p-4 border border-slate-200">
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Best fruit</p>
-            <p className="mt-2 text-lg font-semibold text-slate-800">{topFruit ? topFruit.label : 'No fruit data'}</p>
-            <p className="mt-1 text-slate-600">{topFruit ? `${topFruit.value} boxes sold` : 'No completed sales yet'}</p>
-          </div>
-          <div className="rounded-2xl bg-slate-50 p-4 border border-slate-200">
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Top vendor</p>
-            <p className="mt-2 text-lg font-semibold text-slate-800">{topVendor ? topVendor.label : 'No vendors yet'}</p>
-            <p className="mt-1 text-slate-600">{topVendor ? currency(topVendor.value) : 'No completed sales exist'}</p>
-          </div>
-          <div className="rounded-2xl bg-slate-50 p-4 border border-slate-200">
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Fulfilment</p>
-            <p className="mt-2 text-lg font-semibold text-slate-800">{Math.round(completionRate)}%</p>
-            <p className="mt-1 text-slate-600">{completed.length} completed of {totalOrders} total orders</p>
+      <section aria-label={`Total completed sales ${currency(totalRevenue)}`} className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-slate-200 bg-white px-5 py-7 shadow-sm">
+        <div className="sales-ring h-48 w-48 rounded-full">
+          <div className="absolute inset-[10px] z-10 rounded-full bg-white shadow-inner" aria-hidden="true" />
+          <div className="relative z-20 px-4 text-center">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Total sales</p>
+            <p className="mt-1 text-lg font-extrabold leading-tight text-slate-900">{currency(totalRevenue)}</p>
+            <p className="mt-1 text-[10px] font-medium uppercase tracking-wide text-slate-500">{completed.length.toLocaleString()} completed orders</p>
           </div>
         </div>
-      </Card>
+        <p className="text-xs font-medium text-slate-500">All-time completed sales</p>
+      </section>
 
-      <Card title="Pending Orders">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="text-left text-gray-500">
-              <tr><th className="py-2">#</th><th>Vendor</th><th>Date</th><th>Status</th><th className="text-right">Total</th></tr>
-            </thead>
-            <tbody className="divide-y">
-              {pending.map(o => (
-                <tr key={o.order_id}>
-                  <td className="py-2">{o.order_id}</td>
-                  <td className="py-2">{o.vendor_name}</td>
-                  <td className="py-2">{dateShort(o.order_date)}</td>
-                  <td className="py-2"><Badge className={STATUS_COLORS[o.status]}>{o.status}</Badge></td>
-                  <td className="py-2 text-right font-medium">{currency(o.total_amount)}</td>
-                </tr>
-              ))}
-              {pending.length === 0 && <tr><td colSpan="5" className="py-4 text-center text-gray-500">No pending orders</td></tr>}
-            </tbody>
-          </table>
+      <section aria-labelledby="sales-periods-heading" className="space-y-4">
+        <div>
+          <h2 id="sales-periods-heading" className="text-lg font-bold text-gray-800">Sales by time period</h2>
+          <p className="text-sm text-gray-500">Completed sales are grouped into weekly, monthly, and annual totals.</p>
         </div>
-      </Card>
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <Card title="Weekly sales · last 12 weeks">
+            <BarChart data={weeklySales} formatter={currency} />
+          </Card>
+          <Card title="Monthly sales · last 12 months">
+            <BarChart data={monthlySalesChart} formatter={currency} />
+          </Card>
+          <Card title="Annual sales · last 5 years">
+            <BarChart data={annualSales} formatter={currency} />
+          </Card>
+        </div>
+      </section>
 
-      <Card title="Completed Orders">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="text-left text-gray-500">
-              <tr><th className="py-2">#</th><th>Vendor</th><th>Date</th><th className="text-right">Total</th></tr>
-            </thead>
-            <tbody className="divide-y">
-              {completed.slice(0, 20).map(o => (
-                <tr key={o.order_id}>
-                  <td className="py-2">{o.order_id}</td>
-                  <td className="py-2">{o.vendor_name}</td>
-                  <td className="py-2">{dateShort(o.order_date)}</td>
-                  <td className="py-2 text-right font-medium">{currency(o.total_amount)}</td>
-                </tr>
-              ))}
-              {completed.length === 0 && <tr><td colSpan="4" className="py-4 text-center text-gray-500">No completed orders</td></tr>}
-            </tbody>
-          </table>
-        </div>
-      </Card>
     </div>
   );
 }

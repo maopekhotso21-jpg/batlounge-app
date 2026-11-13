@@ -126,11 +126,6 @@ export default function Login() {
             </Link>
           </p>
 
-          <div className="text-xs text-gray-500 bg-gray-50 rounded-lg p-3 animate-slide-up" style={{ animationDelay: '0.6s' }}>
-            <p className="font-medium text-gray-700 mb-1">Demo accounts</p>
-            <p>Admin: <code>admin / admin123</code></p>
-            <p>Sales: <code>sales / sales123</code></p>
-          </div>
         </form>
       </div>
     </div>

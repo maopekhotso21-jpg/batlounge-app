@@ -55,6 +55,7 @@ export const stockAPI = {
 // Groups order and order-status API calls.
 export const ordersAPI = {
   list: (params) => api.get('/orders', { params }),
+  fruitQuantities: () => api.get('/orders/fruit-quantities'),
   get: (id) => api.get(`/orders/${id}`),
   create: (data) => api.post('/orders', data),
   update: (id, data) => api.put(`/orders/${id}`, data),

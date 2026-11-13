@@ -9,6 +9,7 @@ const { authenticate } = require('../middleware/authMiddleware');
 router.use(authenticate);
 
 router.get('/', c.getAll);
+router.get('/fruit-quantities', c.fruitQuantities);
 router.get('/:id', c.getOne);
 router.post('/', c.create);
 router.put('/:id', c.update);

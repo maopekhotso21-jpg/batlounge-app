@@ -35,8 +35,12 @@ async function autoImport() {
   }
 }
 
-autoImport().then(() => {
+const startServer = async () => {
+  if (process.env.AUTO_IMPORT !== 'false') await autoImport();
+
   const server = app.listen(PORT, () => console.log('API running on port ' + PORT));
   process.on('unhandledRejection', (err) => console.error('Unhandled Rejection:', err));
   process.on('uncaughtException', (err) => { console.error('Uncaught Exception:', err); server.close(() => process.exit(1)); });
-});
+};
+
+startServer();

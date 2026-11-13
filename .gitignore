@@ -1,0 +1,16 @@
+# Local database files and exports should not be published.
+/mysql-data/
+/batlounge_export.sql
+/backend/fix_db.js
+/backend/import_tidb.js
+
+# Local secrets; keep example templates tracked.
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Dependencies and generated frontend output.
+node_modules/
+**/node_modules/
+frontend/dist/
